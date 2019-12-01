@@ -11,49 +11,13 @@ import java.util.Date;
  *
  * @author Hazard
  */
-public class NhaCungCap extends Nguoi{
-    private Date ngayNhap;
-    private int tongSoMatHangNhap;
-    private int tongSoTien;
+public class NhaCungCap extends Nguoi{ 
 
     public NhaCungCap() {
     }
 
-    public NhaCungCap(Date ngayNhap, int tongSoMatHangNhap, int tongSoTien) {
-        this.ngayNhap = ngayNhap;
-        this.tongSoMatHangNhap = tongSoMatHangNhap;
-        this.tongSoTien = tongSoTien;
-    }
-
-    public NhaCungCap(Date ngayNhap, int tongSoMatHangNhap, int tongSoTien, String ma, String ten, String soDienThoai, String email, String diaChi) {
+    public NhaCungCap(String ma, String ten, String soDienThoai, String email, String diaChi) {
         super(ma, ten, soDienThoai, email, diaChi);
-        this.ngayNhap = ngayNhap;
-        this.tongSoMatHangNhap = tongSoMatHangNhap;
-        this.tongSoTien = tongSoTien;
-    }
-
-    public Date getNgayNhap() {
-        return ngayNhap;
-    }
-
-    public void setNgayNhap(Date ngayNhap) {
-        this.ngayNhap = ngayNhap;
-    }
-
-    public int getTongSoMatHangNhap() {
-        return tongSoMatHangNhap;
-    }
-
-    public void setTongSoMatHangNhap(int tongSoMatHangNhap) {
-        this.tongSoMatHangNhap = tongSoMatHangNhap;
-    }
-
-    public int getTongSoTien() {
-        return tongSoTien;
-    }
-
-    public void setTongSoTien(int tongSoTien) {
-        this.tongSoTien = tongSoTien;
     }
 
     public String getMa() {
@@ -95,7 +59,6 @@ public class NhaCungCap extends Nguoi{
     public void setDiaChi(String diaChi) {
         this.diaChi = diaChi;
     }
+
    
-    
-    
 }

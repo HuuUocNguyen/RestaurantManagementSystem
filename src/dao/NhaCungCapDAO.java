@@ -5,10 +5,75 @@
  */
 package dao;
 
+import connect.JDBCConnection;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import model.Account;
+import model.HoaDonNhap;
+import model.NhaCungCap;
+
 /**
  *
  * @author Hazard
  */
 public class NhaCungCapDAO {
+
     
+    
+    
+    
+    public static ArrayList<HoaDonNhap> getListNgayNhap() throws ClassNotFoundException, SQLException {
+        Connection conn = JDBCConnection.getMySQLConnection();
+        ArrayList<HoaDonNhap> list = new ArrayList<HoaDonNhap>();
+        String sql = "SELECT ngayNhap FROM tblhoadonnhap";
+
+        try {
+            PreparedStatement ps = (PreparedStatement) conn.prepareCall(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                HoaDonNhap hoaDonNhap = new HoaDonNhap();
+                hoaDonNhap.setNgayNhap(rs.getDate("ngayNhap"));
+                list.add(hoaDonNhap);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public static ArrayList<HoaDonNhap> getListNhaCungCapInformation() throws ClassNotFoundException, SQLException {
+        Connection conn = JDBCConnection.getMySQLConnection();
+        ArrayList<HoaDonNhap> list = new ArrayList<HoaDonNhap>();
+        String sql = "SELECT maNhaCungCap, tenNhaCungCap, tongSoLuongNguyenLieu, tongTien FROM tblhoadonnhap";
+
+        try {
+            PreparedStatement ps = (PreparedStatement) conn.prepareCall(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                HoaDonNhap hoaDonNhap = new HoaDonNhap();
+                hoaDonNhap.setMaNhaCungCap(rs.getString("maNhaCungCap"));
+                hoaDonNhap.setTenNhaCungCap(rs.getString("tenNhaCungCap"));
+                hoaDonNhap.setTongSoLuongNguyenLieu(rs.getInt("tongSoLuongNguyenLieu"));
+                hoaDonNhap.setTongTien(rs.getFloat("tongTien"));
+                list.add(hoaDonNhap);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public static void main(String[] args) throws ClassNotFoundException, SQLException {
+        for (int i = 0; i < NhaCungCapDAO.getListNgayNhap().size(); i++) {
+            System.out.println(NhaCungCapDAO.getListNgayNhap().get(i).getNgayNhap());
+        }
+        
+//        for (int i = 0; i < NhaCungCapDAO.getListNhaCungCapInformation().size(); i++) {
+//            System.out.println(NhaCungCapDAO.getListNhaCungCapInformation().get(i).getMaNhaCungCap() + NhaCungCapDAO.getListNhaCungCapInformation().get(i).getTenNhaCungCap() + NhaCungCapDAO.getListNhaCungCapInformation().get(i).getTongSoLuongNguyenLieu() + NhaCungCapDAO.getListNhaCungCapInformation().get(i).getTongTien());
+//        }
+        
+    }
 }

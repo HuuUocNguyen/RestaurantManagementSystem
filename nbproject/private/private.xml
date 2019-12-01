@@ -1,4 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/D:/Netbeans/RestaurantManagementSystem/src/view/ThongKeNhaCungCapTheoDoanhChiFrm.java</file>
+            <file>file:/D:/Netbeans/RestaurantManagementSystem/src/dao/HoaDonNhapDAO.java</file>
+            <file>file:/D:/Netbeans/RestaurantManagementSystem/src/controller/NhanVienServiceImpl.java</file>
+            <file>file:/D:/Netbeans/RestaurantManagementSystem/src/view/DangNhapFrm.java</file>
+            <file>file:/D:/Netbeans/RestaurantManagementSystem/src/service/NhanVienService.java</file>
+            <file>file:/D:/Netbeans/RestaurantManagementSystem/src/service/HoaDonNhapService.java</file>
+            <file>file:/D:/Netbeans/RestaurantManagementSystem/src/view/TrangChuFrm.java</file>
+            <file>file:/D:/Netbeans/RestaurantManagementSystem/src/connect/JDBCConnection.java</file>
+            <file>file:/D:/Netbeans/RestaurantManagementSystem/src/view/ListNhaCungCapFrm.java</file>
+            <file>file:/D:/Netbeans/RestaurantManagementSystem/src/dao/NhaCungCapDAO.java</file>
+            <file>file:/D:/Netbeans/RestaurantManagementSystem/src/model/Account.java</file>
+            <file>file:/D:/Netbeans/RestaurantManagementSystem/src/dao/NhanVienDAO.java</file>
+        </group>
+    </open-files>
 </project-private>
