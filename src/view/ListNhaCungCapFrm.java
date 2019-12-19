@@ -6,12 +6,16 @@
 package view;
 
 import control.HoaDonNhapNguyenLieuDAO;
+import control.NguyenLieuDAO;
 import control.NhaCungCapDAO;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import model.HoaDonNhapNguyenLieu;
 import model.NhaCungCap;
 
@@ -21,31 +25,18 @@ import model.NhaCungCap;
  */
 public class ListNhaCungCapFrm extends javax.swing.JFrame {
 
+    static private ArrayList<NhaCungCap> list1;
+    static private ArrayList<HoaDonNhapNguyenLieu> list2;
     /**
      * Creates new form ListNhaCungCap
      */
-    public ListNhaCungCapFrm() throws ClassNotFoundException, SQLException {
+    public ListNhaCungCapFrm(ArrayList<NhaCungCap> list1, ArrayList<HoaDonNhapNguyenLieu> list2) throws ClassNotFoundException, SQLException {
+        this.list1=list1;
+        this.list2 = list2;
         initComponents();
         //showHoaDonNhapInfor();
     }
 
-//    public ArrayList<HoaDonNhapNguyenLieu> getInfor() throws ClassNotFoundException, SQLException {
-//        ArrayList<HoaDonNhapNguyenLieu> list = new ArrayList<>();
-//        return HoaDonNhapNguyenLieuDAO.getListNhaCungCapInformation();
-//    }
-//    public void showHoaDonNhapInfor() throws ClassNotFoundException, SQLException {
-//        ArrayList<HoaDonNhapNguyenLieu> list = getInfor();
-//        System.out.println(list);
-//        DefaultTableModel defaultTableModel = (DefaultTableModel) jTableHoaDonNhap.getModel();
-//        Object[] row = new Object[4];
-//        for (int i = 0; i < list.size(); i++) {
-//            row[0] = list.get(i).getMaNhaCungCap();
-//            row[1] = list.get(i).getTenNhaCungCap();
-//            row[2] = list.get(i).getTongSoLuongNguyenLieu();
-//            row[3] = list.get(i).getTongTien();
-//            defaultTableModel.addRow(row);
-//        }
-//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -59,6 +50,8 @@ public class ListNhaCungCapFrm extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         HoaDonNhapTable = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -91,17 +84,39 @@ public class ListNhaCungCapFrm extends javax.swing.JFrame {
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
+        HoaDonNhapTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                HoaDonNhapTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(HoaDonNhapTable);
+
+        jButton1.setText("Quay lại");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("*Click vào 1 dòng để xem chi tiết nhà cung cấp");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 647, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(111, 111, 111)
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(269, 269, 269)
+                        .addComponent(jButton1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(231, 231, 231)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(196, 196, 196)
+                        .addComponent(jLabel2)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 622, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -110,7 +125,11 @@ public class ListNhaCungCapFrm extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -121,31 +140,47 @@ public class ListNhaCungCapFrm extends javax.swing.JFrame {
     }//GEN-LAST:event_jScrollPane1AncestorAdded
 
     private void HoaDonNhapTableAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_HoaDonNhapTableAncestorAdded
+        // TODO add your handling code here:
+        
+        ArrayList<NhaCungCap> listNhaCungCapByID = null;
+        listNhaCungCapByID =this.list1;
+        ArrayList<HoaDonNhapNguyenLieu> listHoaDonNhapNguyenLieu = null;
+        listHoaDonNhapNguyenLieu = this.list2;
+        DefaultTableModel defaultTableModel = (DefaultTableModel) HoaDonNhapTable.getModel();
+        Object[] row = new Object[4];
+        for (int i = 0; i < listHoaDonNhapNguyenLieu.size(); i++) {
+            row[0] = listHoaDonNhapNguyenLieu.get(i).getIDnhaCungCap();
+            row[1] = listNhaCungCapByID.get(i).getTen();
+            row[2] = listHoaDonNhapNguyenLieu.get(i).getSoLuong();
+            row[3] = listHoaDonNhapNguyenLieu.get(i).getTongTien();
+            defaultTableModel.addRow(row);
+        }
+        NguyenLieuDAO nguyenLieuDAO = new NguyenLieuDAO(list2);
+    }//GEN-LAST:event_HoaDonNhapTableAncestorAdded
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
             // TODO add your handling code here:
-
-            ArrayList<NhaCungCap> listNhaCungCapByID = NhaCungCapDAO.getAllNhaCungCapByID();
-            ArrayList<HoaDonNhapNguyenLieu> listHoaDonNhapNguyenLieu = NhaCungCapDAO.getAllNhaCungCap();
-            DefaultTableModel defaultTableModel = (DefaultTableModel) HoaDonNhapTable.getModel();
-            Object[] row = new Object[4];
-            for (int i = 0; i < listHoaDonNhapNguyenLieu.size(); i++) {
-                row[0] = listHoaDonNhapNguyenLieu.get(i).getIDnhaCungCap();
-                row[1] = listNhaCungCapByID.get(i).getTen();
-                row[2] = listHoaDonNhapNguyenLieu.get(i).getSoLuong();
-                row[3] = listHoaDonNhapNguyenLieu.get(i).getTongTien();
-                defaultTableModel.addRow(row);
-            }
-//            for (int i = 0; i < listNhaCungCapByID.size(); i++) {
-//                row[1] = listNhaCungCapByID.get(i).getTen();
-//                defaultTableModel.addRow(row);
-//            }
+            new ListNhaCungCapFrm(list1, list2).setVisible(false);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ListNhaCungCapFrm.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(ListNhaCungCapFrm.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-    }//GEN-LAST:event_HoaDonNhapTableAncestorAdded
+        ThongKeNhaCungCapTheoDoanhChiFrm thongKeFrm = new ThongKeNhaCungCapTheoDoanhChiFrm();
+        thongKeFrm.show();
+    }//GEN-LAST:event_jButton1ActionPerformed
+    ListNguyenLieuFrm listNguyenLieuFrm = new ListNguyenLieuFrm();
+    private void HoaDonNhapTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HoaDonNhapTableMouseClicked
+        // TODO add your handling code here:
+        int index = HoaDonNhapTable.getSelectedRow();
+        TableModel model = HoaDonNhapTable.getModel();
+        String tongSoMatHangNhap = model.getValueAt(index, 2).toString();
+        listNguyenLieuFrm.setVisible(true);
+        listNguyenLieuFrm.pack();
+        listNguyenLieuFrm.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        //listNguyenLieuFrm.List
+    }//GEN-LAST:event_HoaDonNhapTableMouseClicked
 
     /**
      * @param args the command line arguments
@@ -179,7 +214,7 @@ public class ListNhaCungCapFrm extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new ListNhaCungCapFrm().setVisible(true);
+                    new ListNhaCungCapFrm(list1, list2).setVisible(true);
                 } catch (ClassNotFoundException ex) {
                     Logger.getLogger(ListNhaCungCapFrm.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (SQLException ex) {
@@ -191,7 +226,9 @@ public class ListNhaCungCapFrm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable HoaDonNhapTable;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

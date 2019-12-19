@@ -7,6 +7,7 @@ package view;
 
 import connect.JDBCConnection;
 import control.HoaDonNhapNguyenLieuDAO;
+import control.NhaCungCapDAO;
 import java.awt.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -20,6 +21,7 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.HoaDonNhapNguyenLieu;
+import model.NhaCungCap;
 
 /**
  *
@@ -50,6 +52,7 @@ public class ThongKeNhaCungCapTheoDoanhChiFrm extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         ngayBatDauJDate = new com.toedter.calendar.JDateChooser();
         ngayKetThucJDate = new com.toedter.calendar.JDateChooser();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,6 +74,13 @@ public class ThongKeNhaCungCapTheoDoanhChiFrm extends javax.swing.JFrame {
         ngayBatDauJDate.setDateFormatString("yyyy-MM-dd");
 
         ngayKetThucJDate.setDateFormatString("yyyy-MM-dd");
+
+        jButton2.setText("Quay lại");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -95,7 +105,8 @@ public class ThongKeNhaCungCapTheoDoanhChiFrm extends javax.swing.JFrame {
                                     .addComponent(jButton1)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(ngayKetThucJDate, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
-                                        .addComponent(ngayBatDauJDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))))
+                                        .addComponent(ngayBatDauJDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jButton2))))))
                 .addContainerGap(128, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -116,24 +127,14 @@ public class ThongKeNhaCungCapTheoDoanhChiFrm extends javax.swing.JFrame {
                     .addComponent(ngayKetThucJDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
                 .addComponent(jButton1)
-                .addContainerGap(124, Short.MAX_VALUE))
+                .addGap(27, 27, 27)
+                .addComponent(jButton2)
+                .addContainerGap(74, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-//    public ArrayList<java.sql.Date> getDate() throws ClassNotFoundException, SQLException {
-//        java.util.Date utilStartDate = ngayBatDauJDate.getDate();
-//        java.sql.Date sqlStartDate = new java.sql.Date(utilStartDate.getTime());
-//        //System.out.println(sqlStartDate);
-//
-//        java.util.Date utilEndDate = ngayKetThucJDate.getDate();
-//        java.sql.Date sqlEndDate = new java.sql.Date(utilEndDate.getTime());
-//        //System.out.println(sqlEndDate);
-//        ArrayList<java.sql.Date> list = new ArrayList<>();
-//        list.add(sqlStartDate);
-//        list.add(sqlEndDate);
-//        return list;
-//    }
+
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
@@ -144,31 +145,31 @@ public class ThongKeNhaCungCapTheoDoanhChiFrm extends javax.swing.JFrame {
         java.util.Date utilEndDate = ngayKetThucJDate.getDate();
         java.sql.Date sqlEndDate = new java.sql.Date(utilEndDate.getTime());
         System.out.println(sqlEndDate);
-        Connection conn = null;
+        //NhaCungCapDAO nhaCungCapDAO 
+        ArrayList<NhaCungCap> list1=null;
+        ArrayList<HoaDonNhapNguyenLieu> list2=null;
         try {
-            conn = JDBCConnection.getMySQLConnection();
-        } catch (SQLException ex) {
-            Logger.getLogger(ThongKeNhaCungCapTheoDoanhChiFrm.class.getName()).log(Level.SEVERE, null, ex);
+            list1=NhaCungCapDAO.getAllNhaCungCapByID(sqlStartDate, sqlEndDate);
+            list2=NhaCungCapDAO.getAllNhaCungCap(sqlStartDate, sqlEndDate);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ThongKeNhaCungCapTheoDoanhChiFrm.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ThongKeNhaCungCapTheoDoanhChiFrm.class.getName()).log(Level.SEVERE, null, ex);
         }
-        ArrayList<java.sql.Date> list = new ArrayList<>();
-        //String sql = "SELECT ngayNhap FROM tblhoadonnhap ORDER BY ngayNhap ASC";
-        String sql = "SELECT * FROM restaurant_management_system.tblhoadonnhapnguyenlieu\n"
-                + "WHERE ngayNhap BETWEEN 'sqlStartDate' AND 'sqlEndDate' ";
-        try {
-            PreparedStatement ps = (PreparedStatement) conn.prepareCall(sql);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                list.add(rs.getDate("ngayNhap"));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+
+         for(int i=0; i<list1.size(); i++){
+            System.out.println(list1.get(i).getIDNhaCungCap());
+             System.out.println(list1.get(i).getTen());
         }
+//        for (int i = 0; i < list2.size(); i++) {
+//            System.out.println(list2.get(i).getIDnhaCungCap());
+//            System.out.println(list2.get(i).getSoLuong());
+//            System.out.println(list2.get(i).getTongTien());
+//        }
         new ThongKeNhaCungCapTheoDoanhChiFrm().setVisible(false);
         ListNhaCungCapFrm listNhaCungCapFrm = null;
         try {
-            listNhaCungCapFrm = new ListNhaCungCapFrm();
+            listNhaCungCapFrm = new ListNhaCungCapFrm(list1, list2);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ThongKeNhaCungCapTheoDoanhChiFrm.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -177,6 +178,13 @@ public class ThongKeNhaCungCapTheoDoanhChiFrm extends javax.swing.JFrame {
         listNhaCungCapFrm.show();
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        new ThongKeNhaCungCapTheoDoanhChiFrm().setVisible(false);
+        ThongKeFrm thongKeFrm = new ThongKeFrm();
+        thongKeFrm.show();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -216,6 +224,7 @@ public class ThongKeNhaCungCapTheoDoanhChiFrm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
