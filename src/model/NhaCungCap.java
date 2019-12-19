@@ -11,21 +11,35 @@ import java.util.Date;
  *
  * @author Hazard
  */
-public class NhaCungCap extends Nguoi{ 
+public class NhaCungCap {
+
+    private int IDNhaCungCap;
+    private String ten;
+    private String diaChi;
+    private String moTa;
+    private String email;
+    private String soDienThoai;
+    private int IDNguyenLieu;
 
     public NhaCungCap() {
     }
 
-    public NhaCungCap(String ma, String ten, String soDienThoai, String email, String diaChi) {
-        super(ma, ten, soDienThoai, email, diaChi);
+    public NhaCungCap(int IDNhaCungCap, String ten, String diaChi, String moTa, String email, String soDienThoai, int IDNguyenLieu) {
+        this.IDNhaCungCap = IDNhaCungCap;
+        this.ten = ten;
+        this.diaChi = diaChi;
+        this.moTa = moTa;
+        this.email = email;
+        this.soDienThoai = soDienThoai;
+        this.IDNguyenLieu = IDNguyenLieu;
     }
 
-    public String getMa() {
-        return ma;
+    public int getIDNhaCungCap() {
+        return IDNhaCungCap;
     }
 
-    public void setMa(String ma) {
-        this.ma = ma;
+    public void setIDNhaCungCap(int IDNhaCungCap) {
+        this.IDNhaCungCap = IDNhaCungCap;
     }
 
     public String getTen() {
@@ -36,12 +50,20 @@ public class NhaCungCap extends Nguoi{
         this.ten = ten;
     }
 
-    public String getSoDienThoai() {
-        return soDienThoai;
+    public String getDiaChi() {
+        return diaChi;
     }
 
-    public void setSoDienThoai(String soDienThoai) {
-        this.soDienThoai = soDienThoai;
+    public void setDiaChi(String diaChi) {
+        this.diaChi = diaChi;
+    }
+
+    public String getMoTa() {
+        return moTa;
+    }
+
+    public void setMoTa(String moTa) {
+        this.moTa = moTa;
     }
 
     public String getEmail() {
@@ -52,13 +74,20 @@ public class NhaCungCap extends Nguoi{
         this.email = email;
     }
 
-    public String getDiaChi() {
-        return diaChi;
+    public String getSoDienThoai() {
+        return soDienThoai;
     }
 
-    public void setDiaChi(String diaChi) {
-        this.diaChi = diaChi;
+    public void setSoDienThoai(String soDienThoai) {
+        this.soDienThoai = soDienThoai;
     }
 
-   
+    public int getIDNguyenLieu() {
+        return IDNguyenLieu;
+    }
+
+    public void setIDNguyenLieu(int IDNguyenLieu) {
+        this.IDNguyenLieu = IDNguyenLieu;
+    }
+
 }

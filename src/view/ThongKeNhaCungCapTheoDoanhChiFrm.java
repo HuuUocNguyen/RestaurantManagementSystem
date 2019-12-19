@@ -5,7 +5,12 @@
  */
 package view;
 
-import dao.HoaDonNhapDAO;
+import connect.JDBCConnection;
+import control.HoaDonNhapNguyenLieuDAO;
+import java.awt.List;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -14,7 +19,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.HoaDonNhap;
+import model.HoaDonNhapNguyenLieu;
 
 /**
  *
@@ -41,10 +46,10 @@ public class ThongKeNhaCungCapTheoDoanhChiFrm extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextFieldNgayBatDau = new javax.swing.JTextField();
-        jTextFieldNgayKetThuc = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
+        ngayBatDauJDate = new com.toedter.calendar.JDateChooser();
+        ngayKetThucJDate = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,6 +68,10 @@ public class ThongKeNhaCungCapTheoDoanhChiFrm extends javax.swing.JFrame {
 
         jLabel4.setText("YYYY-MM-DD");
 
+        ngayBatDauJDate.setDateFormatString("yyyy-MM-dd");
+
+        ngayKetThucJDate.setDateFormatString("yyyy-MM-dd");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -75,74 +84,98 @@ public class ThongKeNhaCungCapTheoDoanhChiFrm extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(37, 37, 37)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addGap(40, 40, 40)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldNgayKetThuc, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldNgayBatDau, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1)
-                            .addComponent(jLabel4))))
-                .addContainerGap(69, Short.MAX_VALUE))
+                            .addComponent(jLabel3)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(5, 5, 5)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(35, 35, 35)
+                                        .addComponent(jLabel4))
+                                    .addComponent(jButton1)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(ngayKetThucJDate, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
+                                        .addComponent(ngayBatDauJDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))))
+                .addContainerGap(128, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel4)
-                .addGap(17, 17, 17)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextFieldNgayBatDau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jTextFieldNgayKetThuc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel4)
+                        .addGap(20, 20, 20)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(ngayBatDauJDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(21, 21, 21)
+                        .addComponent(jLabel3))
+                    .addComponent(ngayKetThucJDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
                 .addComponent(jButton1)
-                .addContainerGap(114, Short.MAX_VALUE))
+                .addContainerGap(124, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    public ArrayList<HoaDonNhap> getDate() throws ClassNotFoundException, SQLException {
-        return HoaDonNhapDAO.getListNgayNhap();
-    }
-    
+//    public ArrayList<java.sql.Date> getDate() throws ClassNotFoundException, SQLException {
+//        java.util.Date utilStartDate = ngayBatDauJDate.getDate();
+//        java.sql.Date sqlStartDate = new java.sql.Date(utilStartDate.getTime());
+//        //System.out.println(sqlStartDate);
+//
+//        java.util.Date utilEndDate = ngayKetThucJDate.getDate();
+//        java.sql.Date sqlEndDate = new java.sql.Date(utilEndDate.getTime());
+//        //System.out.println(sqlEndDate);
+//        ArrayList<java.sql.Date> list = new ArrayList<>();
+//        list.add(sqlStartDate);
+//        list.add(sqlEndDate);
+//        return list;
+//    }
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        java.util.Date utilStartDate = ngayBatDauJDate.getDate();
+        java.sql.Date sqlStartDate = new java.sql.Date(utilStartDate.getTime());
+        System.out.println(sqlStartDate);
+
+        java.util.Date utilEndDate = ngayKetThucJDate.getDate();
+        java.sql.Date sqlEndDate = new java.sql.Date(utilEndDate.getTime());
+        System.out.println(sqlEndDate);
+        Connection conn = null;
         try {
-            
-            ArrayList<HoaDonNhap> listDate = getDate();
-//            listDate.sort((HoaDonNhap o1, HoaDonNhap o2)->{
-//                return o1.getNgayNhap() - o2.getNgayNhap();
-//            });
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ThongKeNhaCungCapTheoDoanhChiFrm.class.getName()).log(Level.SEVERE, null, ex);
+            conn = JDBCConnection.getMySQLConnection();
         } catch (SQLException ex) {
             Logger.getLogger(ThongKeNhaCungCapTheoDoanhChiFrm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        String startDay = jTextFieldNgayBatDau.getText();
-        String endDay = jTextFieldNgayKetThuc.getText();
-        try {
-            //String sDate1="31/12/1998";
-            Date start = new SimpleDateFormat("yyyy/MM/dd").parse(startDay);
-            Date end = new SimpleDateFormat("yyyy/MM/dd").parse(endDay);
-        } catch (ParseException ex) {
+        } catch (ClassNotFoundException ex) {
             Logger.getLogger(ThongKeNhaCungCapTheoDoanhChiFrm.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        ArrayList<java.sql.Date> list = new ArrayList<>();
+        //String sql = "SELECT ngayNhap FROM tblhoadonnhap ORDER BY ngayNhap ASC";
+        String sql = "SELECT * FROM restaurant_management_system.tblhoadonnhapnguyenlieu\n"
+                + "WHERE ngayNhap BETWEEN 'sqlStartDate' AND 'sqlEndDate' ";
+        try {
+            PreparedStatement ps = (PreparedStatement) conn.prepareCall(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(rs.getDate("ngayNhap"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         new ThongKeNhaCungCapTheoDoanhChiFrm().setVisible(false);
-        ListNhaCungCapFrm listNhaCungCap = null;
+        ListNhaCungCapFrm listNhaCungCapFrm = null;
         try {
-            listNhaCungCap = new ListNhaCungCapFrm();
+            listNhaCungCapFrm = new ListNhaCungCapFrm();
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ThongKeNhaCungCapTheoDoanhChiFrm.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(ThongKeNhaCungCapTheoDoanhChiFrm.class.getName()).log(Level.SEVERE, null, ex);
         }
-        listNhaCungCap.show();
+        listNhaCungCapFrm.show();
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -187,7 +220,12 @@ public class ThongKeNhaCungCapTheoDoanhChiFrm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JTextField jTextFieldNgayBatDau;
-    private javax.swing.JTextField jTextFieldNgayKetThuc;
+    private com.toedter.calendar.JDateChooser ngayBatDauJDate;
+    private com.toedter.calendar.JDateChooser ngayKetThucJDate;
     // End of variables declaration//GEN-END:variables
+
+    public void jButton1ActionPerformed() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

@@ -5,8 +5,8 @@
  */
 package view;
 
-import dao.NhaCungCapDAO;
-import dao.NhanVienDAO;
+import control.NhaCungCapDAO;
+import control.NhanVienDAO;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -126,6 +126,9 @@ public class DangNhapFrm extends javax.swing.JFrame {
             Logger.getLogger(DangNhapFrm.class.getName()).log(Level.SEVERE, null, ex);
         }
         boolean check = false;
+//        for (int i = 0; i < list.size(); i++) {
+//            System.out.println(list.get(i).getUserName()+" "+list.get(i).getPassWord());
+//        }
         for (int i = 0; i < list.size(); i++) {
             if (userName.equals(list.get(i).getUserName())) {
                 if (passWord.equals(list.get(i).getPassWord())) {

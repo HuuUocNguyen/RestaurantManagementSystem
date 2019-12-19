@@ -5,13 +5,15 @@
  */
 package view;
 
-import dao.HoaDonNhapDAO;
+import control.HoaDonNhapNguyenLieuDAO;
+import control.NhaCungCapDAO;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
-import model.HoaDonNhap;
+import model.HoaDonNhapNguyenLieu;
+import model.NhaCungCap;
 
 /**
  *
@@ -24,27 +26,26 @@ public class ListNhaCungCapFrm extends javax.swing.JFrame {
      */
     public ListNhaCungCapFrm() throws ClassNotFoundException, SQLException {
         initComponents();
-        showHoaDonNhapInfor();
+        //showHoaDonNhapInfor();
     }
 
-    public ArrayList<HoaDonNhap> getInfor() throws ClassNotFoundException, SQLException {
-        ArrayList<HoaDonNhap> list = new ArrayList<>();
-        return HoaDonNhapDAO.getListNhaCungCapInformation();
-    }
-
-    public void showHoaDonNhapInfor() throws ClassNotFoundException, SQLException {
-        ArrayList<HoaDonNhap> list = getInfor();
-        System.out.println(list);
-        DefaultTableModel defaultTableModel = (DefaultTableModel) jTableHoaDonNhap.getModel();
-        Object[] row = new Object[4];
-        for (int i = 0; i < list.size(); i++) {
-            row[0] = list.get(i).getMaNhaCungCap();
-            row[1] = list.get(i).getTenNhaCungCap();
-            row[2] = list.get(i).getTongSoLuongNguyenLieu();
-            row[3] = list.get(i).getTongTien();
-            defaultTableModel.addRow(row);
-        }
-    }
+//    public ArrayList<HoaDonNhapNguyenLieu> getInfor() throws ClassNotFoundException, SQLException {
+//        ArrayList<HoaDonNhapNguyenLieu> list = new ArrayList<>();
+//        return HoaDonNhapNguyenLieuDAO.getListNhaCungCapInformation();
+//    }
+//    public void showHoaDonNhapInfor() throws ClassNotFoundException, SQLException {
+//        ArrayList<HoaDonNhapNguyenLieu> list = getInfor();
+//        System.out.println(list);
+//        DefaultTableModel defaultTableModel = (DefaultTableModel) jTableHoaDonNhap.getModel();
+//        Object[] row = new Object[4];
+//        for (int i = 0; i < list.size(); i++) {
+//            row[0] = list.get(i).getMaNhaCungCap();
+//            row[1] = list.get(i).getTenNhaCungCap();
+//            row[2] = list.get(i).getTongSoLuongNguyenLieu();
+//            row[3] = list.get(i).getTongTien();
+//            defaultTableModel.addRow(row);
+//        }
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -57,21 +58,40 @@ public class ListNhaCungCapFrm extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableHoaDonNhap = new javax.swing.JTable();
+        HoaDonNhapTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Danh sách các nhà cung cấp");
 
-        jTableHoaDonNhap.setModel(new javax.swing.table.DefaultTableModel(
+        jScrollPane1.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                jScrollPane1AncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+
+        HoaDonNhapTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "mã", "tên ncc", "tổng số lượng nguyên liệu", "tổng số tiền"
+                "mã nhà cung cấp", "tên nhà cung cấp", "tổng số lượng nguyên liệu", "tổng số tiền"
             }
         ));
-        jScrollPane1.setViewportView(jTableHoaDonNhap);
+        HoaDonNhapTable.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                HoaDonNhapTableAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        jScrollPane1.setViewportView(HoaDonNhapTable);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -95,6 +115,37 @@ public class ListNhaCungCapFrm extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jScrollPane1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jScrollPane1AncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jScrollPane1AncestorAdded
+
+    private void HoaDonNhapTableAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_HoaDonNhapTableAncestorAdded
+        try {
+            // TODO add your handling code here:
+
+            ArrayList<NhaCungCap> listNhaCungCapByID = NhaCungCapDAO.getAllNhaCungCapByID();
+            ArrayList<HoaDonNhapNguyenLieu> listHoaDonNhapNguyenLieu = NhaCungCapDAO.getAllNhaCungCap();
+            DefaultTableModel defaultTableModel = (DefaultTableModel) HoaDonNhapTable.getModel();
+            Object[] row = new Object[4];
+            for (int i = 0; i < listHoaDonNhapNguyenLieu.size(); i++) {
+                row[0] = listHoaDonNhapNguyenLieu.get(i).getIDnhaCungCap();
+                row[1] = listNhaCungCapByID.get(i).getTen();
+                row[2] = listHoaDonNhapNguyenLieu.get(i).getSoLuong();
+                row[3] = listHoaDonNhapNguyenLieu.get(i).getTongTien();
+                defaultTableModel.addRow(row);
+            }
+//            for (int i = 0; i < listNhaCungCapByID.size(); i++) {
+//                row[1] = listNhaCungCapByID.get(i).getTen();
+//                defaultTableModel.addRow(row);
+//            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ListNhaCungCapFrm.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ListNhaCungCapFrm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_HoaDonNhapTableAncestorAdded
 
     /**
      * @param args the command line arguments
@@ -139,8 +190,8 @@ public class ListNhaCungCapFrm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable HoaDonNhapTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableHoaDonNhap;
     // End of variables declaration//GEN-END:variables
 }

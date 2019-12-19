@@ -10,29 +10,28 @@ package model;
  * @author Hazard
  */
 public class NguyenLieu {
-    private String maNguyenLieu;
+
+    private String IDNguyenLieu;
     private String ten;
     private float donGia;
-    private int soLuong;
-    private float thanhTien;
+    private String mota;
 
     public NguyenLieu() {
     }
 
-    public NguyenLieu(String maNguyenLieu, String ten, float donGia, int soLuong, float thanhTien) {
-        this.maNguyenLieu = maNguyenLieu;
+    public NguyenLieu(String IDNguyenLieu, String ten, float donGia, String mota) {
+        this.IDNguyenLieu = IDNguyenLieu;
         this.ten = ten;
         this.donGia = donGia;
-        this.soLuong = soLuong;
-        this.thanhTien = thanhTien;
+        this.mota = mota;
     }
 
-    public String getMaNguyenLieu() {
-        return maNguyenLieu;
+    public String getIDNguyenLieu() {
+        return IDNguyenLieu;
     }
 
-    public void setMaNguyenLieu(String maNguyenLieu) {
-        this.maNguyenLieu = maNguyenLieu;
+    public void setIDNguyenLieu(String IDNguyenLieu) {
+        this.IDNguyenLieu = IDNguyenLieu;
     }
 
     public String getTen() {
@@ -51,21 +50,12 @@ public class NguyenLieu {
         this.donGia = donGia;
     }
 
-    public int getSoLuong() {
-        return soLuong;
+    public String getMota() {
+        return mota;
     }
 
-    public void setSoLuong(int soLuong) {
-        this.soLuong = soLuong;
+    public void setMota(String mota) {
+        this.mota = mota;
     }
 
-    public float getThanhTien() {
-        return thanhTien;
-    }
-
-    public void setThanhTien(float thanhTien) {
-        this.thanhTien = thanhTien;
-    }
-    
-    
 }
