@@ -101,12 +101,12 @@
                     <div class="method-list-content failed suite-RestaurantManagementSystem">
                       <span>
                         <img width="3%" src="failed.png"/>
-                        <a href="#" class="method navigator-link" panel-name="suite-RestaurantManagementSystem" title="junittest_dao.NhanVienDAO" hash-for-method="testIfConnectionNotNull">testIfConnectionNotNull</a> <!-- method navigator-link -->
+                        <a href="#" class="method navigator-link" panel-name="suite-RestaurantManagementSystem" title="junittest_dao.HoaDonNhapNguyenLieuDAOTest" hash-for-method="testIfConnectionNotNull">testIfConnectionNotNull</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                       <span>
                         <img width="3%" src="failed.png"/>
-                        <a href="#" class="method navigator-link" panel-name="suite-RestaurantManagementSystem" title="junittest_dao.NhanVienDAO" hash-for-method="testListNhanVien">testListNhanVien</a> <!-- method navigator-link -->
+                        <a href="#" class="method navigator-link" panel-name="suite-RestaurantManagementSystem" title="junittest_dao.HoaDonNhapNguyenLieuDAOTest" hash-for-method="testListHoaDonNhapNguyenLieu">testListHoaDonNhapNguyenLieu</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content failed suite-RestaurantManagementSystem -->
@@ -124,7 +124,7 @@
           <div class="suite-RestaurantManagementSystem-class-failed">
             <div class="main-panel-header rounded-window-top">
               <img src="failed.png"/>
-              <span class="class-name">junittest_dao.NhanVienDAO</span>
+              <span class="class-name">junittest_dao.HoaDonNhapNguyenLieuDAOTest</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
@@ -133,7 +133,7 @@
                   </a> <!-- testIfConnectionNotNull -->
                   <span class="method-name">testIfConnectionNotNull</span>
                   <div class="stack-trace">java.lang.ClassCastException: com.mysql.jdbc.JDBC4Connection cannot be cast to connect.JDBCConnection
-	at junittest_dao.NhanVienDAO.testIfConnectionNotNull(NhanVienDAO.java:35)
+	at junittest_dao.HoaDonNhapNguyenLieuDAOTest.testIfConnectionNotNull(HoaDonNhapNguyenLieuDAOTest.java:35)
 	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
 	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
 	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
@@ -159,12 +159,13 @@
               </div> <!-- method -->
               <div class="method">
                 <div class="method-content">
-                  <a name="testListNhanVien">
-                  </a> <!-- testListNhanVien -->
-                  <span class="method-name">testListNhanVien</span>
-                  <div class="stack-trace">java.lang.UnsupportedOperationException: Not supported yet.
-	at junittest_dao.NhanVienDAO.getList(NhanVienDAO.java:26)
-	at junittest_dao.NhanVienDAO.testListNhanVien(NhanVienDAO.java:41)
+                  <a name="testListHoaDonNhapNguyenLieu">
+                  </a> <!-- testListHoaDonNhapNguyenLieu -->
+                  <span class="method-name">testListHoaDonNhapNguyenLieu</span>
+                  <div class="stack-trace">java.lang.IndexOutOfBoundsException: Index: 0, Size: 0
+	at java.util.ArrayList.rangeCheck(ArrayList.java:657)
+	at java.util.ArrayList.get(ArrayList.java:433)
+	at junittest_dao.HoaDonNhapNguyenLieuDAOTest.testListHoaDonNhapNguyenLieu(HoaDonNhapNguyenLieuDAOTest.java:50)
 	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
 	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
 	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
@@ -199,11 +200,11 @@
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;!DOCTYPE suite SYSTEM &quot;http://testng.org/testng-1.0.dtd&quot;&gt;
 &lt;suite name=&quot;RestaurantManagementSystem&quot;&gt;
-  &lt;test name=&quot;junittest_dao.NhanVienDAO&quot; junit=&quot;true&quot; preserve-order=&quot;false&quot;&gt;
+  &lt;test name=&quot;junittest_dao.HoaDonNhapNguyenLieuDAOTest&quot; junit=&quot;true&quot; preserve-order=&quot;false&quot;&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;junittest_dao.NhanVienDAO&quot;/&gt;
+      &lt;class name=&quot;junittest_dao.HoaDonNhapNguyenLieuDAOTest&quot;/&gt;
     &lt;/classes&gt;
-  &lt;/test&gt; &lt;!-- junittest_dao.NhanVienDAO --&gt;
+  &lt;/test&gt; &lt;!-- junittest_dao.HoaDonNhapNguyenLieuDAOTest --&gt;
 &lt;/suite&gt; &lt;!-- RestaurantManagementSystem --&gt;
             </pre>
           </div> <!-- main-panel-content rounded-window-bottom -->
@@ -215,7 +216,7 @@
           <div class="main-panel-content rounded-window-bottom">
             <ul>
               <li>
-                <span class="test-name">junittest_dao.NhanVienDAO (1 class)</span>
+                <span class="test-name">junittest_dao.HoaDonNhapNguyenLieuDAOTest (1 class)</span>
               </li>
             </ul>
           </div> <!-- main-panel-content rounded-window-bottom -->
@@ -243,18 +244,18 @@ data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
 data.addRows(2);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'testIfConnectionNotNull')
-data.setCell(0, 2, 'junittest_dao.NhanVienDAO')
-data.setCell(0, 3, 1277);
+data.setCell(0, 1, 'testListHoaDonNhapNguyenLieu')
+data.setCell(0, 2, 'junittest_dao.HoaDonNhapNguyenLieuDAOTest')
+data.setCell(0, 3, 907);
 data.setCell(1, 0, 1)
-data.setCell(1, 1, 'testListNhanVien')
-data.setCell(1, 2, 'junittest_dao.NhanVienDAO')
-data.setCell(1, 3, 16);
+data.setCell(1, 1, 'testIfConnectionNotNull')
+data.setCell(1, 2, 'junittest_dao.HoaDonNhapNguyenLieuDAOTest')
+data.setCell(1, 3, 31);
 window.suiteTableData['RestaurantManagementSystem']= { tableData: data, tableDiv: 'times-div-RestaurantManagementSystem'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 1 seconds</span>
+              <span class="suite-total-time">Total running time: 938 ms</span>
               <div id="times-div-RestaurantManagementSystem">
               </div> <!-- times-div-RestaurantManagementSystem -->
             </div> <!-- times-div -->
@@ -280,18 +281,18 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">junittest_dao.NhanVienDAO</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">junittest_dao.HoaDonNhapNguyenLieuDAOTest</div> <!-- chronological-class-name -->
               <div class="test-method">
                 <img src="failed.png">
                 </img>
-                <span class="method-name">testListNhanVien</span>
+                <span class="method-name">testListHoaDonNhapNguyenLieu</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <img src="failed.png">
                 </img>
                 <span class="method-name">testIfConnectionNotNull</span>
-                <span class="method-start">20 ms</span>
+                <span class="method-start">922 ms</span>
               </div> <!-- test-method -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
