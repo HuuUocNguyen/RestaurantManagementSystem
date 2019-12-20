@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [RestaurantManagementSystem]">
+  <test name="junittest_dao.NhanVienDAO(failed)" junit="true">
+    <classes>
+      <class name="junittest_dao.NhanVienDAO">
+        <methods>
+          <include name="testListNhanVien"/>
+          <include name="testIfConnectionNotNull"/>
+        </methods>
+      </class> <!-- junittest_dao.NhanVienDAO -->
+    </classes>
+  </test> <!-- junittest_dao.NhanVienDAO(failed) -->
+</suite> <!-- Failed suite [RestaurantManagementSystem] -->

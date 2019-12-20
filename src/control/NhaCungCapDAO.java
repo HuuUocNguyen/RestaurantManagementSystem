@@ -29,8 +29,8 @@ public class NhaCungCapDAO {
         String sql = "SELECT restaurant_management_system.tblnhacungcap.IDNhaCungCap,\n"
                 + "restaurant_management_system.tblnhacungcap.ten,\n"
                 + "restaurant_management_system.tblhoadonnhapnguyenlieu.tongTien,\n"
-                + "restaurant_management_system.tblhoadonnhapnguyenlieu.soLuong\n"
-                //+ "restaurant_management_system.tblhoadonnhapnguyenlieu.ngayNhap \n"
+                + "restaurant_management_system.tblhoadonnhapnguyenlieu.soLuong, \n"
+                + "restaurant_management_system.tblhoadonnhapnguyenlieu.ngayNhap \n"
                 + "FROM restaurant_management_system.tblhoadonnhapnguyenlieu\n"
                 + "INNER JOIN restaurant_management_system.tblnhacungcap ON\n"
                 + "restaurant_management_system.tblhoadonnhapnguyenlieu.IDNhaCungCap = restaurant_management_system.tblnhacungcap.IDNhaCungCap\n"
@@ -46,7 +46,7 @@ public class NhaCungCapDAO {
                 hoaDonNhapNguyenLieu.setIDnhaCungCap(rs.getInt("IDNhaCungCap"));
                 hoaDonNhapNguyenLieu.setSoLuong((int) rs.getFloat("tongTien"));
                 hoaDonNhapNguyenLieu.setTongTien(rs.getInt("soLuong"));
-                //hoaDonNhapNguyenLieu.setNgayNhap(rs.getDate("ngayNhap"));
+                hoaDonNhapNguyenLieu.setNgayNhap(rs.getDate("ngayNhap"));
                 list.add(hoaDonNhapNguyenLieu);
             }
         } catch (Exception e) {

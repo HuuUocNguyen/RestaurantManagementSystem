@@ -10,15 +10,26 @@ package model;
  * @author Hazard
  */
 public class Account {
+
+    private int IDAccount;
     private String userName;
     private String passWord;
 
     public Account() {
     }
 
-    public Account(String userName, String passWord) {
+    public Account(int IDAccount, String userName, String passWord) {
+        this.IDAccount = IDAccount;
         this.userName = userName;
         this.passWord = passWord;
+    }
+
+    public int getIDAccount() {
+        return IDAccount;
+    }
+
+    public void setIDAccount(int IDAccount) {
+        this.IDAccount = IDAccount;
     }
 
     public String getUserName() {
@@ -36,6 +47,5 @@ public class Account {
     public void setPassWord(String passWord) {
         this.passWord = passWord;
     }
-    
-    
+
 }

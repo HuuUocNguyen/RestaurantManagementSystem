@@ -11,7 +11,7 @@ package model;
  */
 public class Nguoi {
 
-    protected String ma;
+    protected int IDNguoi;
     protected String ten;
     protected String soDienThoai;
     protected String email;
@@ -20,20 +20,20 @@ public class Nguoi {
     public Nguoi() {
     }
 
-    public Nguoi(String ma, String ten, String soDienThoai, String email, String diaChi) {
-        this.ma = ma;
+    public Nguoi(int IDNguoi, String ten, String soDienThoai, String email, String diaChi) {
+        this.IDNguoi = IDNguoi;
         this.ten = ten;
         this.soDienThoai = soDienThoai;
         this.email = email;
         this.diaChi = diaChi;
     }
 
-    public String getMa() {
-        return ma;
+    public int getIDNguoi() {
+        return IDNguoi;
     }
 
-    public void setMa(String ma) {
-        this.ma = ma;
+    public void setIDNguoi(int IDNguoi) {
+        this.IDNguoi = IDNguoi;
     }
 
     public String getTen() {
@@ -67,4 +67,6 @@ public class Nguoi {
     public void setDiaChi(String diaChi) {
         this.diaChi = diaChi;
     }
+
+    
 }

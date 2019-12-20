@@ -27,34 +27,34 @@ public class ThongKeFrm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        btnTKLuongKhachTheoGio = new javax.swing.JButton();
+        tieuDe = new javax.swing.JLabel();
+        btnTKMonAnTheoDoanhThu = new javax.swing.JButton();
+        btnThongKeDoanhThuTheoThang = new javax.swing.JButton();
+        btnTKNCCTheoDoanhChi = new javax.swing.JButton();
+        btnQuayLai = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Thống kê lượng khách hàng theo khung giờ");
+        btnTKLuongKhachTheoGio.setText("Thống kê lượng khách hàng theo khung giờ");
 
-        jLabel1.setText("Quản lý thống kê");
+        tieuDe.setText("Quản lý thống kê");
 
-        jButton2.setText("Thống kê món ăn theo doanh thu");
+        btnTKMonAnTheoDoanhThu.setText("Thống kê món ăn theo doanh thu");
 
-        jButton3.setText("Thống kê doanh thu theo tháng");
+        btnThongKeDoanhThuTheoThang.setText("Thống kê doanh thu theo tháng");
 
-        jButton4.setText("Thống kê nhà cung cấp theo doanh chi");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnTKNCCTheoDoanhChi.setText("Thống kê nhà cung cấp theo doanh chi");
+        btnTKNCCTheoDoanhChi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnTKNCCTheoDoanhChiActionPerformed(evt);
             }
         });
 
-        jButton5.setText("Quay lại");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        btnQuayLai.setText("Quay lại");
+        btnQuayLai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                btnQuayLaiActionPerformed(evt);
             }
         });
 
@@ -65,56 +65,56 @@ public class ThongKeFrm extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnThongKeDoanhThuTheoThang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnTKNCCTheoDoanhChi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnTKLuongKhachTheoGio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnTKMonAnTheoDoanhThu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(23, 23, 23))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(234, 234, 234)
-                        .addComponent(jLabel1))
+                        .addComponent(tieuDe))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(237, 237, 237)
-                        .addComponent(jButton5)))
+                        .addComponent(btnQuayLai)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(tieuDe)
                 .addGap(53, 53, 53)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnTKLuongKhachTheoGio, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
+                    .addComponent(btnThongKeDoanhThuTheoThang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnTKNCCTheoDoanhChi, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnTKMonAnTheoDoanhThu, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                .addComponent(jButton5)
+                .addComponent(btnQuayLai)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btnTKNCCTheoDoanhChiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTKNCCTheoDoanhChiActionPerformed
         new ThongKeFrm().setVisible(false);
         ThongKeNhaCungCapTheoDoanhChiFrm thongKeNCCDC = new ThongKeNhaCungCapTheoDoanhChiFrm();
         thongKeNCCDC.show();
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_btnTKNCCTheoDoanhChiActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void btnQuayLaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuayLaiActionPerformed
         // TODO add your handling code here:
         new ThongKeFrm().setVisible(false);
         TrangChuFrm trangChuFrm = new TrangChuFrm();
         trangChuFrm.show();
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_btnQuayLaiActionPerformed
 
     /**
      * @param args the command line arguments
@@ -152,11 +152,11 @@ public class ThongKeFrm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton btnQuayLai;
+    private javax.swing.JButton btnTKLuongKhachTheoGio;
+    private javax.swing.JButton btnTKMonAnTheoDoanhThu;
+    private javax.swing.JButton btnTKNCCTheoDoanhChi;
+    private javax.swing.JButton btnThongKeDoanhThuTheoThang;
+    private javax.swing.JLabel tieuDe;
     // End of variables declaration//GEN-END:variables
 }

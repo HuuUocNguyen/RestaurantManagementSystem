@@ -11,7 +11,7 @@ package model;
  */
 public class NguyenLieu {
 
-    private String IDNguyenLieu;
+    private int IDNguyenLieu;
     private String ten;
     private float donGia;
     private String mota;
@@ -19,18 +19,18 @@ public class NguyenLieu {
     public NguyenLieu() {
     }
 
-    public NguyenLieu(String IDNguyenLieu, String ten, float donGia, String mota) {
+    public NguyenLieu(int IDNguyenLieu, String ten, float donGia, String mota) {
         this.IDNguyenLieu = IDNguyenLieu;
         this.ten = ten;
         this.donGia = donGia;
         this.mota = mota;
     }
 
-    public String getIDNguyenLieu() {
+    public int getIDNguyenLieu() {
         return IDNguyenLieu;
     }
 
-    public void setIDNguyenLieu(String IDNguyenLieu) {
+    public void setIDNguyenLieu(int IDNguyenLieu) {
         this.IDNguyenLieu = IDNguyenLieu;
     }
 
@@ -57,5 +57,8 @@ public class NguyenLieu {
     public void setMota(String mota) {
         this.mota = mota;
     }
+    
+    
+   
 
 }

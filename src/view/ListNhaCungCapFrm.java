@@ -14,6 +14,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import model.HoaDonNhapNguyenLieu;
@@ -47,15 +51,15 @@ public class ListNhaCungCapFrm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        tieuDe = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         HoaDonNhapTable = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        note = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Danh sách các nhà cung cấp");
+        tieuDe.setText("Danh sách các nhà cung cấp");
 
         jScrollPane1.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
@@ -98,7 +102,7 @@ public class ListNhaCungCapFrm extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("*Click vào 1 dòng để xem chi tiết nhà cung cấp");
+        note.setText("*Click vào 1 dòng để xem chi tiết nhà cung cấp");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -112,23 +116,23 @@ public class ListNhaCungCapFrm extends javax.swing.JFrame {
                         .addComponent(jButton1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(231, 231, 231)
-                        .addComponent(jLabel1))
+                        .addComponent(tieuDe))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(196, 196, 196)
-                        .addComponent(jLabel2)))
+                        .addComponent(note)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(tieuDe)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
+                .addComponent(note)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -155,7 +159,7 @@ public class ListNhaCungCapFrm extends javax.swing.JFrame {
             row[3] = listHoaDonNhapNguyenLieu.get(i).getTongTien();
             defaultTableModel.addRow(row);
         }
-        NguyenLieuDAO nguyenLieuDAO = new NguyenLieuDAO(list2);
+        //NguyenLieuDAO nguyenLieuDAO = new NguyenLieuDAO(list2);
     }//GEN-LAST:event_HoaDonNhapTableAncestorAdded
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -170,16 +174,13 @@ public class ListNhaCungCapFrm extends javax.swing.JFrame {
         ThongKeNhaCungCapTheoDoanhChiFrm thongKeFrm = new ThongKeNhaCungCapTheoDoanhChiFrm();
         thongKeFrm.show();
     }//GEN-LAST:event_jButton1ActionPerformed
-    ListNguyenLieuFrm listNguyenLieuFrm = new ListNguyenLieuFrm();
+    
     private void HoaDonNhapTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HoaDonNhapTableMouseClicked
-        // TODO add your handling code here:
         int index = HoaDonNhapTable.getSelectedRow();
         TableModel model = HoaDonNhapTable.getModel();
-        String tongSoMatHangNhap = model.getValueAt(index, 2).toString();
-        listNguyenLieuFrm.setVisible(true);
-        listNguyenLieuFrm.pack();
-        listNguyenLieuFrm.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        //listNguyenLieuFrm.List
+        String tongTien = model.getValueAt(index, 2).toString();
+        String soLuong = model.getValueAt(index, 3).toString();
+        JOptionPane.showConfirmDialog(rootPane, "tongTien = "+tongTien+", soLuong = "+soLuong);
     }//GEN-LAST:event_HoaDonNhapTableMouseClicked
 
     /**
@@ -227,8 +228,8 @@ public class ListNhaCungCapFrm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable HoaDonNhapTable;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel note;
+    private javax.swing.JLabel tieuDe;
     // End of variables declaration//GEN-END:variables
 }

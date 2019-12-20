@@ -7,6 +7,7 @@ package view;
 
 import connect.JDBCConnection;
 import control.HoaDonNhapNguyenLieuDAO;
+import control.NguyenLieuDAO;
 import control.NhaCungCapDAO;
 import java.awt.List;
 import java.sql.Connection;
@@ -45,31 +46,31 @@ public class ThongKeNhaCungCapTheoDoanhChiFrm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
+        tieuDe = new javax.swing.JLabel();
+        ngayBatDauJLable = new javax.swing.JLabel();
+        ngayKetThucJLable = new javax.swing.JLabel();
+        btnthongKe = new javax.swing.JButton();
+        note = new javax.swing.JLabel();
         ngayBatDauJDate = new com.toedter.calendar.JDateChooser();
         ngayKetThucJDate = new com.toedter.calendar.JDateChooser();
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Thống kê nhà cung cấp theo doanh chi");
+        tieuDe.setText("Thống kê nhà cung cấp theo doanh chi");
 
-        jLabel2.setText("Ngày bắt đầu: ");
+        ngayBatDauJLable.setText("Ngày bắt đầu: ");
 
-        jLabel3.setText("Ngày kết thúc:");
+        ngayKetThucJLable.setText("Ngày kết thúc:");
 
-        jButton1.setText("Thống kê");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnthongKe.setText("Thống kê");
+        btnthongKe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnthongKeActionPerformed(evt);
             }
         });
 
-        jLabel4.setText("YYYY-MM-DD");
+        note.setText("YYYY-MM-DD");
 
         ngayBatDauJDate.setDateFormatString("yyyy-MM-dd");
 
@@ -90,19 +91,19 @@ public class ThongKeNhaCungCapTheoDoanhChiFrm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(97, 97, 97)
-                        .addComponent(jLabel1))
+                        .addComponent(tieuDe))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(37, 37, 37)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
+                            .addComponent(ngayKetThucJLable)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
+                                .addComponent(ngayBatDauJLable)
                                 .addGap(5, 5, 5)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(35, 35, 35)
-                                        .addComponent(jLabel4))
-                                    .addComponent(jButton1)
+                                        .addComponent(note))
+                                    .addComponent(btnthongKe)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(ngayKetThucJDate, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
                                         .addComponent(ngayBatDauJDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -115,18 +116,18 @@ public class ThongKeNhaCungCapTheoDoanhChiFrm extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(tieuDe)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel4)
+                        .addComponent(note)
                         .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
+                            .addComponent(ngayBatDauJLable)
                             .addComponent(ngayBatDauJDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(21, 21, 21)
-                        .addComponent(jLabel3))
+                        .addComponent(ngayKetThucJLable))
                     .addComponent(ngayKetThucJDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
-                .addComponent(jButton1)
+                .addComponent(btnthongKe)
                 .addGap(27, 27, 27)
                 .addComponent(jButton2)
                 .addContainerGap(74, Short.MAX_VALUE))
@@ -136,7 +137,7 @@ public class ThongKeNhaCungCapTheoDoanhChiFrm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnthongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnthongKeActionPerformed
 
         java.util.Date utilStartDate = ngayBatDauJDate.getDate();
         java.sql.Date sqlStartDate = new java.sql.Date(utilStartDate.getTime());
@@ -148,9 +149,11 @@ public class ThongKeNhaCungCapTheoDoanhChiFrm extends javax.swing.JFrame {
         //NhaCungCapDAO nhaCungCapDAO 
         ArrayList<NhaCungCap> list1=null;
         ArrayList<HoaDonNhapNguyenLieu> list2=null;
+        ArrayList<HoaDonNhapNguyenLieu> list3=null;
         try {
             list1=NhaCungCapDAO.getAllNhaCungCapByID(sqlStartDate, sqlEndDate);
             list2=NhaCungCapDAO.getAllNhaCungCap(sqlStartDate, sqlEndDate);
+            list3 = NguyenLieuDAO.getAllNguyenLieu(sqlStartDate, sqlEndDate);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ThongKeNhaCungCapTheoDoanhChiFrm.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -177,7 +180,7 @@ public class ThongKeNhaCungCapTheoDoanhChiFrm extends javax.swing.JFrame {
         }
         listNhaCungCapFrm.show();
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnthongKeActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
@@ -223,14 +226,14 @@ public class ThongKeNhaCungCapTheoDoanhChiFrm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnthongKe;
     private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private com.toedter.calendar.JDateChooser ngayBatDauJDate;
+    private javax.swing.JLabel ngayBatDauJLable;
     private com.toedter.calendar.JDateChooser ngayKetThucJDate;
+    private javax.swing.JLabel ngayKetThucJLable;
+    private javax.swing.JLabel note;
+    private javax.swing.JLabel tieuDe;
     // End of variables declaration//GEN-END:variables
 
     public void jButton1ActionPerformed() {
